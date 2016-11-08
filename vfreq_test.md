@@ -1,18 +1,29 @@
-*** Settings ***
-Library     OperatingSystem
-Library     diff
-Resource    ../../common_keyword/vfreq_keyword.robot
-Suite Setup  Directory Should Exist  ../../temple 
+    *** Settings ***
+
+    Library     OperatingSystem
+
+    Library     diff
+
+    Resource    ../../common_keyword/vfreq_keyword.robot
+
+    Suite Setup  Directory Should Exist  ../../temple 
 
 
-*** Variables ***
-${files_dir}=  ../../temple/vfreq_test_temple
-${outcar}=  ${files_dir}/OUTCAR
-${g09log}=  ${files_dir}/H2Ofreq
-${g09log_temple}=  ${files_dir}/H2Ofreq_temple
-${g09log_diff_result}=   vfreq_diff
-${helper_temple}=  ${files_dir}/vfreq_helper_temple
-${hint_temple}=  ${files_dir}/vfreq_hint_temple
+    *** Variables ***
+
+    ${files_dir}=  ../../temple/vfreq_test_temple
+
+    ${outcar}=  ${files_dir}/OUTCAR
+
+    ${g09log}=  ${files_dir}/H2Ofreq
+
+    ${g09log_temple}=  ${files_dir}/H2Ofreq_temple
+
+    ${g09log_diff_result}=   vfreq_diff
+
+    ${helper_temple}=  ${files_dir}/vfreq_helper_temple
+    
+    ${hint_temple}=  ${files_dir}/vfreq_hint_temple
 
 
 *** Keywords ***
