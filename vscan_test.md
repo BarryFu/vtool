@@ -1,0 +1,164 @@
+*** Settings ***
+Library     OperatingSystem
+Library     diff
+Resource    ../../common_keyword/vscan_keyword.robot
+#Suite Setup  Directory Should Exist  ../../temple/vscan_test_temple  
+
+
+*** Variables ***
+${files_dir}=  ../../temple/vscan_test_temple
+${poscar}=  ${files_dir}/POSCAR
+${00}=  00/POSCAR
+${01}=  01/POSCAR
+${02}=  02/POSCAR
+${03}=  03/POSCAR
+${04}=  04/POSCAR
+${00_files}=  00
+${01_files}=  01
+${02_files}=  02
+${03_files}=  03
+${04_files}=  04
+${00_linear}=  ${files_dir}/linear_temple/00/POSCAR
+${01_linear}=  ${files_dir}/linear_temple/01/POSCAR
+${02_linear}=  ${files_dir}/linear_temple/02/POSCAR
+${03_linear}=  ${files_dir}/linear_temple/03/POSCAR
+${04_linear}=  ${files_dir}/linear_temple/04/POSCAR
+${00_angle}=  ${files_dir}/angle_temple/00/POSCAR
+${01_angle}=  ${files_dir}/angle_temple/01/POSCAR
+${02_angle}=  ${files_dir}/angle_temple/02/POSCAR
+${03_angle}=  ${files_dir}/angle_temple/03/POSCAR
+${04_angle}=  ${files_dir}/angle_temple/04/POSCAR
+${00_dihedral}=  ${files_dir}/dihedral_temple/00/POSCAR
+${01_dihedral}=  ${files_dir}/dihedral_temple/01/POSCAR
+${02_dihedral}=  ${files_dir}/dihedral_temple/02/POSCAR
+${03_dihedral}=  ${files_dir}/dihedral_temple/03/POSCAR
+${04_dihedral}=  ${files_dir}/dihedral_temple/04/POSCAR
+${vscan_diff_result0}=   vscan_diff0
+${vscan_diff_result1}=   vscan_diff1
+${vscan_diff_result2}=   vscan_diff2
+${vscan_diff_result3}=   vscan_diff3
+${vscan_diff_result4}=   vscan_diff4
+${helper_temple}=  ${files_dir}/vfreq_helper_temple
+${hint_temple}=  ${files_dir}/vfreq_hint_temple
+
+
+*** Keywords ***
+
+Generate vscan linear From POSCAR
+    Run vscan linear  ${poscar}
+
+Generate vscan angle From POSCAR
+    Run vscan angle  ${poscar}
+
+Generate vscan dihedral From POSCAR
+    Run vscan dihedral  ${poscar}
+
+Check linear-POSCAR0
+    diff_context  ${00}  ${00_linear}  ${vscan_diff_result0} 
+    ${rc}  ${result}=  Run and Return RC and Output  cat ${vscan_diff_result0} 
+    Should Be Empty  ${result}
+Check linear-POSCAR1
+    diff_context  ${01}  ${01_linear}  ${vscan_diff_result1}
+    ${rc}  ${result}=  Run and Return RC and Output  cat ${vscan_diff_result1}
+    Should Be Empty  ${result}
+Check linear-POSCAR2
+    diff_context  ${02}  ${02_linear}  ${vscan_diff_result2}
+    ${rc}  ${result}=  Run and Return RC and Output  cat ${vscan_diff_result2}
+    Should Be Empty  ${result}
+Check linear-POSCAR3
+    diff_context  ${03}  ${03_linear}  ${vscan_diff_result3}
+    ${rc}  ${result}=  Run and Return RC and Output  cat ${vscan_diff_result3}
+    Should Be Empty  ${result}
+Check linear-POSCAR4
+    diff_context  ${04}  ${04_linear}  ${vscan_diff_result4}
+    ${rc}  ${result}=  Run and Return RC and Output  cat ${vscan_diff_result4}
+    Should Be Empty  ${result}
+
+Check angle-POSCAR0
+    diff_context  ${00}  ${00_angle}  ${vscan_diff_result0}
+    ${rc}  ${result}=  Run and Return RC and Output  cat ${vscan_diff_result0}
+    Should Be Empty  ${result}
+Check angle-POSCAR1
+    diff_context  ${01}  ${01_angle}  ${vscan_diff_result1}
+    ${rc}  ${result}=  Run and Return RC and Output  cat ${vscan_diff_result1}
+    Should Be Empty  ${result}
+Check angle-POSCAR2
+    diff_context  ${02}  ${02_angle}  ${vscan_diff_result2}
+    ${rc}  ${result}=  Run and Return RC and Output  cat ${vscan_diff_result2}
+    Should Be Empty  ${result}
+Check angle-POSCAR3
+    diff_context  ${03}  ${03_angle}  ${vscan_diff_result3}
+    ${rc}  ${result}=  Run and Return RC and Output  cat ${vscan_diff_result3}
+    Should Be Empty  ${result}
+Check angle-POSCAR4
+    diff_context  ${04}  ${04_angle}  ${vscan_diff_result4}
+    ${rc}  ${result}=  Run and Return RC and Output  cat ${vscan_diff_result4}
+    Should Be Empty  ${result}
+
+Check dihedral-POSCAR0
+    diff_context  ${00}  ${00_dihedral}  ${vscan_diff_result0}
+    ${rc}  ${result}=  Run and Return RC and Output  cat ${vscan_diff_result0}
+    Should Be Empty  ${result}
+Check dihedral-POSCAR1
+    diff_context  ${01}  ${01_dihedral}  ${vscan_diff_result1}
+    ${rc}  ${result}=  Run and Return RC and Output  cat ${vscan_diff_result1}
+    Should Be Empty  ${result}
+Check dihedral-POSCAR2
+    diff_context  ${02}  ${02_dihedral}  ${vscan_diff_result2}
+    ${rc}  ${result}=  Run and Return RC and Output  cat ${vscan_diff_result2}
+    Should Be Empty  ${result}
+Check dihedral-POSCAR3
+    diff_context  ${03}  ${03_dihedral}  ${vscan_diff_result3}
+    ${rc}  ${result}=  Run and Return RC and Output  cat ${vscan_diff_result3}
+    Should Be Empty  ${result}
+Check dihedral-POSCAR4
+    diff_context  ${04}  ${04_dihedral}  ${vscan_diff_result4}
+    ${rc}  ${result}=  Run and Return RC and Output  cat ${vscan_diff_result4}
+    Should Be Empty  ${result}
+
+*** Test Cases ***
+Convert POSCAR To vscan-linear
+    [Setup]  File Should Exist  ${poscar}  
+    Generate vscan linear From POSCAR 
+    Check linear-POSCAR0
+    Check linear-POSCAR1
+    Check linear-POSCAR2
+    Check linear-POSCAR3
+    Check linear-POSCAR4
+
+    [TearDown]  Run Keywords   Remove Files  ${vscan_diff_result0}  ${vscan_diff_result1}  ${vscan_diff_result2}  ${vscan_diff_result3}  ${vscan_diff_result4}  AND  Remove Directory  ${00_files}  recursive=yes  AND  Remove Directory  ${01_files}  recursive=yes  AND  Remove Directory  ${02_files}  recursive=yes  AND  Remove Directory  ${03_files}  recursive=ye  AND  Remove Directory  ${04_files}  recursive=yess
+
+
+Convert POSCAR To vscan-angle
+    [Setup]  File Should Exist  ${poscar}
+    Generate vscan angle From POSCAR
+    Check angle-POSCAR0
+    Check angle-POSCAR1
+    Check angle-POSCAR2
+    Check angle-POSCAR3
+    Check angle-POSCAR4
+
+    [TearDown]  Run Keywords   Remove Files  ${vscan_diff_result0}  ${vscan_diff_result1}  ${vscan_diff_result2}  ${vscan_diff_result3}  ${vscan_diff_result4}  AND  Remove Directory  ${00_files}  recursive=yes  AND  Remove Directory  ${01_files}  recursive=yes  AND  Remove Directory  ${02_files}  recursive=yes  AND  Remove Directory  ${03_files}  recursive=ye  AND  Remove Directory  ${04_files}  recursive=yess
+
+
+Convert POSCAR To vscan-dihedral
+    [Setup]  File Should Exist  ${poscar}
+    Generate vscan dihedral From POSCAR
+    Check dihedral-POSCAR0
+    Check dihedral-POSCAR1
+    Check dihedral-POSCAR2
+    Check dihedral-POSCAR3
+    Check dihedral-POSCAR4
+
+    [TearDown]  Run Keywords   Remove Files  ${vscan_diff_result0}  ${vscan_diff_result1}  ${vscan_diff_result2}  ${vscan_diff_result3}  ${vscan_diff_result4}  AND  Remove Directory  ${00_files}  recursive=yes  AND  Remove Directory  ${01_files}  recursive=yes  AND  Remove Directory  ${02_files}  recursive=yes  AND  Remove Directory  ${03_files}  recursive=ye  AND  Remove Directory  ${04_files}  recursive=yess
+
+
+#OBCheck vscan Helper
+#   Test Setup OUTCAR To vscan helper
+#   Run vscan helper
+#   Check vscan Helper
+#
+#Check vscan Hint
+#    Test Setup POSCAR To vscan hint
+#    Run vscan hint
+#    Check vscan Hint
