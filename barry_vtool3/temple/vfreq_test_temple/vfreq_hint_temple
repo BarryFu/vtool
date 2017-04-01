@@ -1,0 +1,3 @@
+ -h : help
+ -i : input file, ie OUTCAR
+ -o : output file, ie xxx.log, xxx.out

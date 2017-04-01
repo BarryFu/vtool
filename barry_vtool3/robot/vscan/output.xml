@@ -1,0 +1,880 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 3.0 (Python 3.5.2 on linux)" generated="20161031 16:38:52.114">
+<suite id="s1" source="/root/venv/barry_vtool3/robot/vscan/vscan_test.robot" name="Vscan Test">
+<test id="s1-t1" name="Convert POSCAR To vscan-linear">
+<kw type="setup" library="OperatingSystem" name="File Should Exist">
+<doc>Fails unless the given ``path`` points to an existing file.</doc>
+<arguments>
+<arg>${poscar}</arg>
+</arguments>
+<msg timestamp="20161031 16:38:52.228" html="yes" level="INFO">File '&lt;a href="file:///root/venv/barry_vtool3/temple/vscan_test_temple/POSCAR"&gt;/root/venv/barry_vtool3/temple/vscan_test_temple/POSCAR&lt;/a&gt;' exists.</msg>
+<status starttime="20161031 16:38:52.227" endtime="20161031 16:38:52.228" status="PASS"></status>
+</kw>
+<kw name="Generate vscan linear From POSCAR">
+<kw library="vscan_keyword" name="Run vscan linear">
+<arguments>
+<arg>${poscar}</arg>
+</arguments>
+<kw library="OperatingSystem" name="Run And Return Rc And Output">
+<doc>Runs the given command in the system and returns the RC and output.</doc>
+<arguments>
+<arg>vscan -i ${input} -r 92 -m 93 -g 92,93 -n 4 -d 0.1</arg>
+</arguments>
+<assign>
+<var>${rc}</var>
+<var>${result}</var>
+</assign>
+<msg timestamp="20161031 16:38:52.235" level="INFO">Running command 'vscan -i ../../temple/vscan_test_temple/POSCAR -r 92 -m 93 -g 92,93 -n 4 -d 0.1 2&gt;&amp;1'.</msg>
+<msg timestamp="20161031 16:38:52.375" level="INFO">${rc} = 0</msg>
+<msg timestamp="20161031 16:38:52.375" level="INFO">${result} = </msg>
+<status starttime="20161031 16:38:52.230" endtime="20161031 16:38:52.375" status="PASS"></status>
+</kw>
+<kw library="BuiltIn" name="Should Be Equal">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${0}</arg>
+<arg>${rc}</arg>
+</arguments>
+<status starttime="20161031 16:38:52.376" endtime="20161031 16:38:52.377" status="PASS"></status>
+</kw>
+<status starttime="20161031 16:38:52.229" endtime="20161031 16:38:52.377" status="PASS"></status>
+</kw>
+<status starttime="20161031 16:38:52.228" endtime="20161031 16:38:52.377" status="PASS"></status>
+</kw>
+<kw name="Check linear-POSCAR0">
+<kw library="diff" name="Diff Context">
+<arguments>
+<arg>${00}</arg>
+<arg>${00_linear}</arg>
+<arg>${vscan_diff_result0}</arg>
+</arguments>
+<status starttime="20161031 16:38:52.378" endtime="20161031 16:38:52.380" status="PASS"></status>
+</kw>
+<kw library="OperatingSystem" name="Run And Return Rc And Output">
+<doc>Runs the given command in the system and returns the RC and output.</doc>
+<arguments>
+<arg>cat ${vscan_diff_result0}</arg>
+</arguments>
+<assign>
+<var>${rc}</var>
+<var>${result}</var>
+</assign>
+<msg timestamp="20161031 16:38:52.383" level="INFO">Running command 'cat vscan_diff0 2&gt;&amp;1'.</msg>
+<msg timestamp="20161031 16:38:52.386" level="INFO">${rc} = 0</msg>
+<msg timestamp="20161031 16:38:52.386" level="INFO">${result} = </msg>
+<status starttime="20161031 16:38:52.380" endtime="20161031 16:38:52.386" status="PASS"></status>
+</kw>
+<kw library="BuiltIn" name="Should Be Empty">
+<doc>Verifies that the given item is empty.</doc>
+<arguments>
+<arg>${result}</arg>
+</arguments>
+<msg timestamp="20161031 16:38:52.387" level="INFO">Length is 0</msg>
+<status starttime="20161031 16:38:52.387" endtime="20161031 16:38:52.387" status="PASS"></status>
+</kw>
+<status starttime="20161031 16:38:52.378" endtime="20161031 16:38:52.388" status="PASS"></status>
+</kw>
+<kw name="Check linear-POSCAR1">
+<kw library="diff" name="Diff Context">
+<arguments>
+<arg>${01}</arg>
+<arg>${01_linear}</arg>
+<arg>${vscan_diff_result1}</arg>
+</arguments>
+<status starttime="20161031 16:38:52.389" endtime="20161031 16:38:52.390" status="PASS"></status>
+</kw>
+<kw library="OperatingSystem" name="Run And Return Rc And Output">
+<doc>Runs the given command in the system and returns the RC and output.</doc>
+<arguments>
+<arg>cat ${vscan_diff_result1}</arg>
+</arguments>
+<assign>
+<var>${rc}</var>
+<var>${result}</var>
+</assign>
+<msg timestamp="20161031 16:38:52.393" level="INFO">Running command 'cat vscan_diff1 2&gt;&amp;1'.</msg>
+<msg timestamp="20161031 16:38:52.396" level="INFO">${rc} = 0</msg>
+<msg timestamp="20161031 16:38:52.396" level="INFO">${result} = </msg>
+<status starttime="20161031 16:38:52.391" endtime="20161031 16:38:52.396" status="PASS"></status>
+</kw>
+<kw library="BuiltIn" name="Should Be Empty">
+<doc>Verifies that the given item is empty.</doc>
+<arguments>
+<arg>${result}</arg>
+</arguments>
+<msg timestamp="20161031 16:38:52.397" level="INFO">Length is 0</msg>
+<status starttime="20161031 16:38:52.397" endtime="20161031 16:38:52.398" status="PASS"></status>
+</kw>
+<status starttime="20161031 16:38:52.388" endtime="20161031 16:38:52.398" status="PASS"></status>
+</kw>
+<kw name="Check linear-POSCAR2">
+<kw library="diff" name="Diff Context">
+<arguments>
+<arg>${02}</arg>
+<arg>${02_linear}</arg>
+<arg>${vscan_diff_result2}</arg>
+</arguments>
+<status starttime="20161031 16:38:52.399" endtime="20161031 16:38:52.401" status="PASS"></status>
+</kw>
+<kw library="OperatingSystem" name="Run And Return Rc And Output">
+<doc>Runs the given command in the system and returns the RC and output.</doc>
+<arguments>
+<arg>cat ${vscan_diff_result2}</arg>
+</arguments>
+<assign>
+<var>${rc}</var>
+<var>${result}</var>
+</assign>
+<msg timestamp="20161031 16:38:52.403" level="INFO">Running command 'cat vscan_diff2 2&gt;&amp;1'.</msg>
+<msg timestamp="20161031 16:38:52.406" level="INFO">${rc} = 0</msg>
+<msg timestamp="20161031 16:38:52.406" level="INFO">${result} = </msg>
+<status starttime="20161031 16:38:52.401" endtime="20161031 16:38:52.407" status="PASS"></status>
+</kw>
+<kw library="BuiltIn" name="Should Be Empty">
+<doc>Verifies that the given item is empty.</doc>
+<arguments>
+<arg>${result}</arg>
+</arguments>
+<msg timestamp="20161031 16:38:52.408" level="INFO">Length is 0</msg>
+<status starttime="20161031 16:38:52.407" endtime="20161031 16:38:52.408" status="PASS"></status>
+</kw>
+<status starttime="20161031 16:38:52.398" endtime="20161031 16:38:52.408" status="PASS"></status>
+</kw>
+<kw name="Check linear-POSCAR3">
+<kw library="diff" name="Diff Context">
+<arguments>
+<arg>${03}</arg>
+<arg>${03_linear}</arg>
+<arg>${vscan_diff_result3}</arg>
+</arguments>
+<status starttime="20161031 16:38:52.409" endtime="20161031 16:38:52.411" status="PASS"></status>
+</kw>
+<kw library="OperatingSystem" name="Run And Return Rc And Output">
+<doc>Runs the given command in the system and returns the RC and output.</doc>
+<arguments>
+<arg>cat ${vscan_diff_result3}</arg>
+</arguments>
+<assign>
+<var>${rc}</var>
+<var>${result}</var>
+</assign>
+<msg timestamp="20161031 16:38:52.414" level="INFO">Running command 'cat vscan_diff3 2&gt;&amp;1'.</msg>
+<msg timestamp="20161031 16:38:52.417" level="INFO">${rc} = 0</msg>
+<msg timestamp="20161031 16:38:52.417" level="INFO">${result} = </msg>
+<status starttime="20161031 16:38:52.411" endtime="20161031 16:38:52.417" status="PASS"></status>
+</kw>
+<kw library="BuiltIn" name="Should Be Empty">
+<doc>Verifies that the given item is empty.</doc>
+<arguments>
+<arg>${result}</arg>
+</arguments>
+<msg timestamp="20161031 16:38:52.418" level="INFO">Length is 0</msg>
+<status starttime="20161031 16:38:52.418" endtime="20161031 16:38:52.418" status="PASS"></status>
+</kw>
+<status starttime="20161031 16:38:52.409" endtime="20161031 16:38:52.419" status="PASS"></status>
+</kw>
+<kw name="Check linear-POSCAR4">
+<kw library="diff" name="Diff Context">
+<arguments>
+<arg>${04}</arg>
+<arg>${04_linear}</arg>
+<arg>${vscan_diff_result4}</arg>
+</arguments>
+<status starttime="20161031 16:38:52.420" endtime="20161031 16:38:52.421" status="PASS"></status>
+</kw>
+<kw library="OperatingSystem" name="Run And Return Rc And Output">
+<doc>Runs the given command in the system and returns the RC and output.</doc>
+<arguments>
+<arg>cat ${vscan_diff_result4}</arg>
+</arguments>
+<assign>
+<var>${rc}</var>
+<var>${result}</var>
+</assign>
+<msg timestamp="20161031 16:38:52.424" level="INFO">Running command 'cat vscan_diff4 2&gt;&amp;1'.</msg>
+<msg timestamp="20161031 16:38:52.427" level="INFO">${rc} = 0</msg>
+<msg timestamp="20161031 16:38:52.427" level="INFO">${result} = </msg>
+<status starttime="20161031 16:38:52.422" endtime="20161031 16:38:52.427" status="PASS"></status>
+</kw>
+<kw library="BuiltIn" name="Should Be Empty">
+<doc>Verifies that the given item is empty.</doc>
+<arguments>
+<arg>${result}</arg>
+</arguments>
+<msg timestamp="20161031 16:38:52.429" level="INFO">Length is 0</msg>
+<status starttime="20161031 16:38:52.428" endtime="20161031 16:38:52.429" status="PASS"></status>
+</kw>
+<status starttime="20161031 16:38:52.419" endtime="20161031 16:38:52.429" status="PASS"></status>
+</kw>
+<kw type="teardown" library="BuiltIn" name="Run Keywords">
+<doc>Executes all the given keywords in a sequence.</doc>
+<arguments>
+<arg>Remove Files</arg>
+<arg>${vscan_diff_result0}</arg>
+<arg>${vscan_diff_result1}</arg>
+<arg>${vscan_diff_result2}</arg>
+<arg>${vscan_diff_result3}</arg>
+<arg>${vscan_diff_result4}</arg>
+<arg>AND</arg>
+<arg>Remove Directory</arg>
+<arg>${00_files}</arg>
+<arg>recursive=yes</arg>
+<arg>AND</arg>
+<arg>Remove Directory</arg>
+<arg>${01_files}</arg>
+<arg>recursive=yes</arg>
+<arg>AND</arg>
+<arg>Remove Directory</arg>
+<arg>${02_files}</arg>
+<arg>recursive=yes</arg>
+<arg>AND</arg>
+<arg>Remove Directory</arg>
+<arg>${03_files}</arg>
+<arg>recursive=ye</arg>
+<arg>AND</arg>
+<arg>Remove Directory</arg>
+<arg>${04_files}</arg>
+<arg>recursive=yess</arg>
+</arguments>
+<kw library="OperatingSystem" name="Remove Files">
+<doc>Uses `Remove File` to remove multiple files one-by-one.</doc>
+<arguments>
+<arg>${vscan_diff_result0}</arg>
+<arg>${vscan_diff_result1}</arg>
+<arg>${vscan_diff_result2}</arg>
+<arg>${vscan_diff_result3}</arg>
+<arg>${vscan_diff_result4}</arg>
+</arguments>
+<msg timestamp="20161031 16:38:52.432" html="yes" level="INFO">Removed file '&lt;a href="file:///root/venv/barry_vtool3/robot/vscan/vscan_diff0"&gt;/root/venv/barry_vtool3/robot/vscan/vscan_diff0&lt;/a&gt;'.</msg>
+<msg timestamp="20161031 16:38:52.432" html="yes" level="INFO">Removed file '&lt;a href="file:///root/venv/barry_vtool3/robot/vscan/vscan_diff1"&gt;/root/venv/barry_vtool3/robot/vscan/vscan_diff1&lt;/a&gt;'.</msg>
+<msg timestamp="20161031 16:38:52.432" html="yes" level="INFO">Removed file '&lt;a href="file:///root/venv/barry_vtool3/robot/vscan/vscan_diff2"&gt;/root/venv/barry_vtool3/robot/vscan/vscan_diff2&lt;/a&gt;'.</msg>
+<msg timestamp="20161031 16:38:52.433" html="yes" level="INFO">Removed file '&lt;a href="file:///root/venv/barry_vtool3/robot/vscan/vscan_diff3"&gt;/root/venv/barry_vtool3/robot/vscan/vscan_diff3&lt;/a&gt;'.</msg>
+<msg timestamp="20161031 16:38:52.433" html="yes" level="INFO">Removed file '&lt;a href="file:///root/venv/barry_vtool3/robot/vscan/vscan_diff4"&gt;/root/venv/barry_vtool3/robot/vscan/vscan_diff4&lt;/a&gt;'.</msg>
+<status starttime="20161031 16:38:52.431" endtime="20161031 16:38:52.433" status="PASS"></status>
+</kw>
+<kw library="OperatingSystem" name="Remove Directory">
+<doc>Removes the directory pointed to by the given ``path``.</doc>
+<arguments>
+<arg>${00_files}</arg>
+<arg>recursive=yes</arg>
+</arguments>
+<msg timestamp="20161031 16:38:52.434" html="yes" level="INFO">Removed directory '&lt;a href="file:///root/venv/barry_vtool3/robot/vscan/00"&gt;/root/venv/barry_vtool3/robot/vscan/00&lt;/a&gt;'.</msg>
+<status starttime="20161031 16:38:52.433" endtime="20161031 16:38:52.434" status="PASS"></status>
+</kw>
+<kw library="OperatingSystem" name="Remove Directory">
+<doc>Removes the directory pointed to by the given ``path``.</doc>
+<arguments>
+<arg>${01_files}</arg>
+<arg>recursive=yes</arg>
+</arguments>
+<msg timestamp="20161031 16:38:52.436" html="yes" level="INFO">Removed directory '&lt;a href="file:///root/venv/barry_vtool3/robot/vscan/01"&gt;/root/venv/barry_vtool3/robot/vscan/01&lt;/a&gt;'.</msg>
+<status starttime="20161031 16:38:52.435" endtime="20161031 16:38:52.436" status="PASS"></status>
+</kw>
+<kw library="OperatingSystem" name="Remove Directory">
+<doc>Removes the directory pointed to by the given ``path``.</doc>
+<arguments>
+<arg>${02_files}</arg>
+<arg>recursive=yes</arg>
+</arguments>
+<msg timestamp="20161031 16:38:52.437" html="yes" level="INFO">Removed directory '&lt;a href="file:///root/venv/barry_vtool3/robot/vscan/02"&gt;/root/venv/barry_vtool3/robot/vscan/02&lt;/a&gt;'.</msg>
+<status starttime="20161031 16:38:52.436" endtime="20161031 16:38:52.437" status="PASS"></status>
+</kw>
+<kw library="OperatingSystem" name="Remove Directory">
+<doc>Removes the directory pointed to by the given ``path``.</doc>
+<arguments>
+<arg>${03_files}</arg>
+<arg>recursive=ye</arg>
+</arguments>
+<msg timestamp="20161031 16:38:52.438" html="yes" level="INFO">Removed directory '&lt;a href="file:///root/venv/barry_vtool3/robot/vscan/03"&gt;/root/venv/barry_vtool3/robot/vscan/03&lt;/a&gt;'.</msg>
+<status starttime="20161031 16:38:52.438" endtime="20161031 16:38:52.439" status="PASS"></status>
+</kw>
+<kw library="OperatingSystem" name="Remove Directory">
+<doc>Removes the directory pointed to by the given ``path``.</doc>
+<arguments>
+<arg>${04_files}</arg>
+<arg>recursive=yess</arg>
+</arguments>
+<msg timestamp="20161031 16:38:52.440" html="yes" level="INFO">Removed directory '&lt;a href="file:///root/venv/barry_vtool3/robot/vscan/04"&gt;/root/venv/barry_vtool3/robot/vscan/04&lt;/a&gt;'.</msg>
+<status starttime="20161031 16:38:52.439" endtime="20161031 16:38:52.440" status="PASS"></status>
+</kw>
+<status starttime="20161031 16:38:52.430" endtime="20161031 16:38:52.440" status="PASS"></status>
+</kw>
+<status critical="yes" starttime="20161031 16:38:52.226" endtime="20161031 16:38:52.441" status="PASS"></status>
+</test>
+<test id="s1-t2" name="Convert POSCAR To vscan-angle">
+<kw type="setup" library="OperatingSystem" name="File Should Exist">
+<doc>Fails unless the given ``path`` points to an existing file.</doc>
+<arguments>
+<arg>${poscar}</arg>
+</arguments>
+<msg timestamp="20161031 16:38:52.443" html="yes" level="INFO">File '&lt;a href="file:///root/venv/barry_vtool3/temple/vscan_test_temple/POSCAR"&gt;/root/venv/barry_vtool3/temple/vscan_test_temple/POSCAR&lt;/a&gt;' exists.</msg>
+<status starttime="20161031 16:38:52.442" endtime="20161031 16:38:52.443" status="PASS"></status>
+</kw>
+<kw name="Generate vscan angle From POSCAR">
+<kw library="vscan_keyword" name="Run vscan angle">
+<arguments>
+<arg>${poscar}</arg>
+</arguments>
+<kw library="OperatingSystem" name="Run And Return Rc And Output">
+<doc>Runs the given command in the system and returns the RC and output.</doc>
+<arguments>
+<arg>vscan -i ${input} -r 74,92 -m 93 -g 74,92,93 -n 5 -d 2</arg>
+</arguments>
+<assign>
+<var>${rc}</var>
+<var>${result}</var>
+</assign>
+<msg timestamp="20161031 16:38:52.447" level="INFO">Running command 'vscan -i ../../temple/vscan_test_temple/POSCAR -r 74,92 -m 93 -g 74,92,93 -n 5 -d 2 2&gt;&amp;1'.</msg>
+<msg timestamp="20161031 16:38:52.589" level="INFO">${rc} = 0</msg>
+<msg timestamp="20161031 16:38:52.589" level="INFO">${result} = </msg>
+<status starttime="20161031 16:38:52.445" endtime="20161031 16:38:52.589" status="PASS"></status>
+</kw>
+<kw library="BuiltIn" name="Should Be Equal">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${0}</arg>
+<arg>${rc}</arg>
+</arguments>
+<status starttime="20161031 16:38:52.590" endtime="20161031 16:38:52.591" status="PASS"></status>
+</kw>
+<status starttime="20161031 16:38:52.444" endtime="20161031 16:38:52.591" status="PASS"></status>
+</kw>
+<status starttime="20161031 16:38:52.443" endtime="20161031 16:38:52.591" status="PASS"></status>
+</kw>
+<kw name="Check angle-POSCAR0">
+<kw library="diff" name="Diff Context">
+<arguments>
+<arg>${00}</arg>
+<arg>${00_angle}</arg>
+<arg>${vscan_diff_result0}</arg>
+</arguments>
+<status starttime="20161031 16:38:52.592" endtime="20161031 16:38:52.594" status="PASS"></status>
+</kw>
+<kw library="OperatingSystem" name="Run And Return Rc And Output">
+<doc>Runs the given command in the system and returns the RC and output.</doc>
+<arguments>
+<arg>cat ${vscan_diff_result0}</arg>
+</arguments>
+<assign>
+<var>${rc}</var>
+<var>${result}</var>
+</assign>
+<msg timestamp="20161031 16:38:52.597" level="INFO">Running command 'cat vscan_diff0 2&gt;&amp;1'.</msg>
+<msg timestamp="20161031 16:38:52.600" level="INFO">${rc} = 0</msg>
+<msg timestamp="20161031 16:38:52.600" level="INFO">${result} = </msg>
+<status starttime="20161031 16:38:52.594" endtime="20161031 16:38:52.600" status="PASS"></status>
+</kw>
+<kw library="BuiltIn" name="Should Be Empty">
+<doc>Verifies that the given item is empty.</doc>
+<arguments>
+<arg>${result}</arg>
+</arguments>
+<msg timestamp="20161031 16:38:52.601" level="INFO">Length is 0</msg>
+<status starttime="20161031 16:38:52.601" endtime="20161031 16:38:52.602" status="PASS"></status>
+</kw>
+<status starttime="20161031 16:38:52.592" endtime="20161031 16:38:52.602" status="PASS"></status>
+</kw>
+<kw name="Check angle-POSCAR1">
+<kw library="diff" name="Diff Context">
+<arguments>
+<arg>${01}</arg>
+<arg>${01_angle}</arg>
+<arg>${vscan_diff_result1}</arg>
+</arguments>
+<status starttime="20161031 16:38:52.603" endtime="20161031 16:38:52.605" status="PASS"></status>
+</kw>
+<kw library="OperatingSystem" name="Run And Return Rc And Output">
+<doc>Runs the given command in the system and returns the RC and output.</doc>
+<arguments>
+<arg>cat ${vscan_diff_result1}</arg>
+</arguments>
+<assign>
+<var>${rc}</var>
+<var>${result}</var>
+</assign>
+<msg timestamp="20161031 16:38:52.608" level="INFO">Running command 'cat vscan_diff1 2&gt;&amp;1'.</msg>
+<msg timestamp="20161031 16:38:52.611" level="INFO">${rc} = 0</msg>
+<msg timestamp="20161031 16:38:52.611" level="INFO">${result} = </msg>
+<status starttime="20161031 16:38:52.605" endtime="20161031 16:38:52.611" status="PASS"></status>
+</kw>
+<kw library="BuiltIn" name="Should Be Empty">
+<doc>Verifies that the given item is empty.</doc>
+<arguments>
+<arg>${result}</arg>
+</arguments>
+<msg timestamp="20161031 16:38:52.612" level="INFO">Length is 0</msg>
+<status starttime="20161031 16:38:52.611" endtime="20161031 16:38:52.612" status="PASS"></status>
+</kw>
+<status starttime="20161031 16:38:52.602" endtime="20161031 16:38:52.613" status="PASS"></status>
+</kw>
+<kw name="Check angle-POSCAR2">
+<kw library="diff" name="Diff Context">
+<arguments>
+<arg>${02}</arg>
+<arg>${02_angle}</arg>
+<arg>${vscan_diff_result2}</arg>
+</arguments>
+<status starttime="20161031 16:38:52.614" endtime="20161031 16:38:52.615" status="PASS"></status>
+</kw>
+<kw library="OperatingSystem" name="Run And Return Rc And Output">
+<doc>Runs the given command in the system and returns the RC and output.</doc>
+<arguments>
+<arg>cat ${vscan_diff_result2}</arg>
+</arguments>
+<assign>
+<var>${rc}</var>
+<var>${result}</var>
+</assign>
+<msg timestamp="20161031 16:38:52.618" level="INFO">Running command 'cat vscan_diff2 2&gt;&amp;1'.</msg>
+<msg timestamp="20161031 16:38:52.621" level="INFO">${rc} = 0</msg>
+<msg timestamp="20161031 16:38:52.621" level="INFO">${result} = </msg>
+<status starttime="20161031 16:38:52.615" endtime="20161031 16:38:52.621" status="PASS"></status>
+</kw>
+<kw library="BuiltIn" name="Should Be Empty">
+<doc>Verifies that the given item is empty.</doc>
+<arguments>
+<arg>${result}</arg>
+</arguments>
+<msg timestamp="20161031 16:38:52.622" level="INFO">Length is 0</msg>
+<status starttime="20161031 16:38:52.622" endtime="20161031 16:38:52.622" status="PASS"></status>
+</kw>
+<status starttime="20161031 16:38:52.613" endtime="20161031 16:38:52.623" status="PASS"></status>
+</kw>
+<kw name="Check angle-POSCAR3">
+<kw library="diff" name="Diff Context">
+<arguments>
+<arg>${03}</arg>
+<arg>${03_angle}</arg>
+<arg>${vscan_diff_result3}</arg>
+</arguments>
+<status starttime="20161031 16:38:52.624" endtime="20161031 16:38:52.625" status="PASS"></status>
+</kw>
+<kw library="OperatingSystem" name="Run And Return Rc And Output">
+<doc>Runs the given command in the system and returns the RC and output.</doc>
+<arguments>
+<arg>cat ${vscan_diff_result3}</arg>
+</arguments>
+<assign>
+<var>${rc}</var>
+<var>${result}</var>
+</assign>
+<msg timestamp="20161031 16:38:52.628" level="INFO">Running command 'cat vscan_diff3 2&gt;&amp;1'.</msg>
+<msg timestamp="20161031 16:38:52.631" level="INFO">${rc} = 0</msg>
+<msg timestamp="20161031 16:38:52.631" level="INFO">${result} = </msg>
+<status starttime="20161031 16:38:52.626" endtime="20161031 16:38:52.631" status="PASS"></status>
+</kw>
+<kw library="BuiltIn" name="Should Be Empty">
+<doc>Verifies that the given item is empty.</doc>
+<arguments>
+<arg>${result}</arg>
+</arguments>
+<msg timestamp="20161031 16:38:52.632" level="INFO">Length is 0</msg>
+<status starttime="20161031 16:38:52.632" endtime="20161031 16:38:52.633" status="PASS"></status>
+</kw>
+<status starttime="20161031 16:38:52.623" endtime="20161031 16:38:52.633" status="PASS"></status>
+</kw>
+<kw name="Check angle-POSCAR4">
+<kw library="diff" name="Diff Context">
+<arguments>
+<arg>${04}</arg>
+<arg>${04_angle}</arg>
+<arg>${vscan_diff_result4}</arg>
+</arguments>
+<status starttime="20161031 16:38:52.634" endtime="20161031 16:38:52.635" status="PASS"></status>
+</kw>
+<kw library="OperatingSystem" name="Run And Return Rc And Output">
+<doc>Runs the given command in the system and returns the RC and output.</doc>
+<arguments>
+<arg>cat ${vscan_diff_result4}</arg>
+</arguments>
+<assign>
+<var>${rc}</var>
+<var>${result}</var>
+</assign>
+<msg timestamp="20161031 16:38:52.638" level="INFO">Running command 'cat vscan_diff4 2&gt;&amp;1'.</msg>
+<msg timestamp="20161031 16:38:52.641" level="INFO">${rc} = 0</msg>
+<msg timestamp="20161031 16:38:52.641" level="INFO">${result} = </msg>
+<status starttime="20161031 16:38:52.636" endtime="20161031 16:38:52.642" status="PASS"></status>
+</kw>
+<kw library="BuiltIn" name="Should Be Empty">
+<doc>Verifies that the given item is empty.</doc>
+<arguments>
+<arg>${result}</arg>
+</arguments>
+<msg timestamp="20161031 16:38:52.643" level="INFO">Length is 0</msg>
+<status starttime="20161031 16:38:52.642" endtime="20161031 16:38:52.643" status="PASS"></status>
+</kw>
+<status starttime="20161031 16:38:52.633" endtime="20161031 16:38:52.643" status="PASS"></status>
+</kw>
+<kw type="teardown" library="BuiltIn" name="Run Keywords">
+<doc>Executes all the given keywords in a sequence.</doc>
+<arguments>
+<arg>Remove Files</arg>
+<arg>${vscan_diff_result0}</arg>
+<arg>${vscan_diff_result1}</arg>
+<arg>${vscan_diff_result2}</arg>
+<arg>${vscan_diff_result3}</arg>
+<arg>${vscan_diff_result4}</arg>
+<arg>AND</arg>
+<arg>Remove Directory</arg>
+<arg>${00_files}</arg>
+<arg>recursive=yes</arg>
+<arg>AND</arg>
+<arg>Remove Directory</arg>
+<arg>${01_files}</arg>
+<arg>recursive=yes</arg>
+<arg>AND</arg>
+<arg>Remove Directory</arg>
+<arg>${02_files}</arg>
+<arg>recursive=yes</arg>
+<arg>AND</arg>
+<arg>Remove Directory</arg>
+<arg>${03_files}</arg>
+<arg>recursive=ye</arg>
+<arg>AND</arg>
+<arg>Remove Directory</arg>
+<arg>${04_files}</arg>
+<arg>recursive=yess</arg>
+</arguments>
+<kw library="OperatingSystem" name="Remove Files">
+<doc>Uses `Remove File` to remove multiple files one-by-one.</doc>
+<arguments>
+<arg>${vscan_diff_result0}</arg>
+<arg>${vscan_diff_result1}</arg>
+<arg>${vscan_diff_result2}</arg>
+<arg>${vscan_diff_result3}</arg>
+<arg>${vscan_diff_result4}</arg>
+</arguments>
+<msg timestamp="20161031 16:38:52.646" html="yes" level="INFO">Removed file '&lt;a href="file:///root/venv/barry_vtool3/robot/vscan/vscan_diff0"&gt;/root/venv/barry_vtool3/robot/vscan/vscan_diff0&lt;/a&gt;'.</msg>
+<msg timestamp="20161031 16:38:52.646" html="yes" level="INFO">Removed file '&lt;a href="file:///root/venv/barry_vtool3/robot/vscan/vscan_diff1"&gt;/root/venv/barry_vtool3/robot/vscan/vscan_diff1&lt;/a&gt;'.</msg>
+<msg timestamp="20161031 16:38:52.646" html="yes" level="INFO">Removed file '&lt;a href="file:///root/venv/barry_vtool3/robot/vscan/vscan_diff2"&gt;/root/venv/barry_vtool3/robot/vscan/vscan_diff2&lt;/a&gt;'.</msg>
+<msg timestamp="20161031 16:38:52.647" html="yes" level="INFO">Removed file '&lt;a href="file:///root/venv/barry_vtool3/robot/vscan/vscan_diff3"&gt;/root/venv/barry_vtool3/robot/vscan/vscan_diff3&lt;/a&gt;'.</msg>
+<msg timestamp="20161031 16:38:52.647" html="yes" level="INFO">Removed file '&lt;a href="file:///root/venv/barry_vtool3/robot/vscan/vscan_diff4"&gt;/root/venv/barry_vtool3/robot/vscan/vscan_diff4&lt;/a&gt;'.</msg>
+<status starttime="20161031 16:38:52.645" endtime="20161031 16:38:52.647" status="PASS"></status>
+</kw>
+<kw library="OperatingSystem" name="Remove Directory">
+<doc>Removes the directory pointed to by the given ``path``.</doc>
+<arguments>
+<arg>${00_files}</arg>
+<arg>recursive=yes</arg>
+</arguments>
+<msg timestamp="20161031 16:38:52.648" html="yes" level="INFO">Removed directory '&lt;a href="file:///root/venv/barry_vtool3/robot/vscan/00"&gt;/root/venv/barry_vtool3/robot/vscan/00&lt;/a&gt;'.</msg>
+<status starttime="20161031 16:38:52.647" endtime="20161031 16:38:52.649" status="PASS"></status>
+</kw>
+<kw library="OperatingSystem" name="Remove Directory">
+<doc>Removes the directory pointed to by the given ``path``.</doc>
+<arguments>
+<arg>${01_files}</arg>
+<arg>recursive=yes</arg>
+</arguments>
+<msg timestamp="20161031 16:38:52.650" html="yes" level="INFO">Removed directory '&lt;a href="file:///root/venv/barry_vtool3/robot/vscan/01"&gt;/root/venv/barry_vtool3/robot/vscan/01&lt;/a&gt;'.</msg>
+<status starttime="20161031 16:38:52.649" endtime="20161031 16:38:52.650" status="PASS"></status>
+</kw>
+<kw library="OperatingSystem" name="Remove Directory">
+<doc>Removes the directory pointed to by the given ``path``.</doc>
+<arguments>
+<arg>${02_files}</arg>
+<arg>recursive=yes</arg>
+</arguments>
+<msg timestamp="20161031 16:38:52.651" html="yes" level="INFO">Removed directory '&lt;a href="file:///root/venv/barry_vtool3/robot/vscan/02"&gt;/root/venv/barry_vtool3/robot/vscan/02&lt;/a&gt;'.</msg>
+<status starttime="20161031 16:38:52.650" endtime="20161031 16:38:52.651" status="PASS"></status>
+</kw>
+<kw library="OperatingSystem" name="Remove Directory">
+<doc>Removes the directory pointed to by the given ``path``.</doc>
+<arguments>
+<arg>${03_files}</arg>
+<arg>recursive=ye</arg>
+</arguments>
+<msg timestamp="20161031 16:38:52.653" html="yes" level="INFO">Removed directory '&lt;a href="file:///root/venv/barry_vtool3/robot/vscan/03"&gt;/root/venv/barry_vtool3/robot/vscan/03&lt;/a&gt;'.</msg>
+<status starttime="20161031 16:38:52.652" endtime="20161031 16:38:52.653" status="PASS"></status>
+</kw>
+<kw library="OperatingSystem" name="Remove Directory">
+<doc>Removes the directory pointed to by the given ``path``.</doc>
+<arguments>
+<arg>${04_files}</arg>
+<arg>recursive=yess</arg>
+</arguments>
+<msg timestamp="20161031 16:38:52.654" html="yes" level="INFO">Removed directory '&lt;a href="file:///root/venv/barry_vtool3/robot/vscan/04"&gt;/root/venv/barry_vtool3/robot/vscan/04&lt;/a&gt;'.</msg>
+<status starttime="20161031 16:38:52.653" endtime="20161031 16:38:52.654" status="PASS"></status>
+</kw>
+<status starttime="20161031 16:38:52.644" endtime="20161031 16:38:52.654" status="PASS"></status>
+</kw>
+<status critical="yes" starttime="20161031 16:38:52.441" endtime="20161031 16:38:52.655" status="PASS"></status>
+</test>
+<test id="s1-t3" name="Convert POSCAR To vscan-dihedral">
+<kw type="setup" library="OperatingSystem" name="File Should Exist">
+<doc>Fails unless the given ``path`` points to an existing file.</doc>
+<arguments>
+<arg>${poscar}</arg>
+</arguments>
+<msg timestamp="20161031 16:38:52.657" html="yes" level="INFO">File '&lt;a href="file:///root/venv/barry_vtool3/temple/vscan_test_temple/POSCAR"&gt;/root/venv/barry_vtool3/temple/vscan_test_temple/POSCAR&lt;/a&gt;' exists.</msg>
+<status starttime="20161031 16:38:52.656" endtime="20161031 16:38:52.657" status="PASS"></status>
+</kw>
+<kw name="Generate vscan dihedral From POSCAR">
+<kw library="vscan_keyword" name="Run vscan dihedral">
+<arguments>
+<arg>${poscar}</arg>
+</arguments>
+<kw library="OperatingSystem" name="Run And Return Rc And Output">
+<doc>Runs the given command in the system and returns the RC and output.</doc>
+<arguments>
+<arg>vscan -i ${input} -r 73,74,92 -m 93 -g 74,92,93 -n 5 -d 2</arg>
+</arguments>
+<assign>
+<var>${rc}</var>
+<var>${result}</var>
+</assign>
+<msg timestamp="20161031 16:38:52.661" level="INFO">Running command 'vscan -i ../../temple/vscan_test_temple/POSCAR -r 73,74,92 -m 93 -g 74,92,93 -n 5 -d 2 2&gt;&amp;1'.</msg>
+<msg timestamp="20161031 16:38:52.803" level="INFO">${rc} = 0</msg>
+<msg timestamp="20161031 16:38:52.803" level="INFO">${result} = </msg>
+<status starttime="20161031 16:38:52.659" endtime="20161031 16:38:52.803" status="PASS"></status>
+</kw>
+<kw library="BuiltIn" name="Should Be Equal">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${0}</arg>
+<arg>${rc}</arg>
+</arguments>
+<status starttime="20161031 16:38:52.804" endtime="20161031 16:38:52.806" status="PASS"></status>
+</kw>
+<status starttime="20161031 16:38:52.658" endtime="20161031 16:38:52.806" status="PASS"></status>
+</kw>
+<status starttime="20161031 16:38:52.657" endtime="20161031 16:38:52.806" status="PASS"></status>
+</kw>
+<kw name="Check dihedral-POSCAR0">
+<kw library="diff" name="Diff Context">
+<arguments>
+<arg>${00}</arg>
+<arg>${00_dihedral}</arg>
+<arg>${vscan_diff_result0}</arg>
+</arguments>
+<status starttime="20161031 16:38:52.807" endtime="20161031 16:38:52.809" status="PASS"></status>
+</kw>
+<kw library="OperatingSystem" name="Run And Return Rc And Output">
+<doc>Runs the given command in the system and returns the RC and output.</doc>
+<arguments>
+<arg>cat ${vscan_diff_result0}</arg>
+</arguments>
+<assign>
+<var>${rc}</var>
+<var>${result}</var>
+</assign>
+<msg timestamp="20161031 16:38:52.811" level="INFO">Running command 'cat vscan_diff0 2&gt;&amp;1'.</msg>
+<msg timestamp="20161031 16:38:52.814" level="INFO">${rc} = 0</msg>
+<msg timestamp="20161031 16:38:52.815" level="INFO">${result} = </msg>
+<status starttime="20161031 16:38:52.809" endtime="20161031 16:38:52.815" status="PASS"></status>
+</kw>
+<kw library="BuiltIn" name="Should Be Empty">
+<doc>Verifies that the given item is empty.</doc>
+<arguments>
+<arg>${result}</arg>
+</arguments>
+<msg timestamp="20161031 16:38:52.816" level="INFO">Length is 0</msg>
+<status starttime="20161031 16:38:52.815" endtime="20161031 16:38:52.816" status="PASS"></status>
+</kw>
+<status starttime="20161031 16:38:52.806" endtime="20161031 16:38:52.816" status="PASS"></status>
+</kw>
+<kw name="Check dihedral-POSCAR1">
+<kw library="diff" name="Diff Context">
+<arguments>
+<arg>${01}</arg>
+<arg>${01_dihedral}</arg>
+<arg>${vscan_diff_result1}</arg>
+</arguments>
+<status starttime="20161031 16:38:52.817" endtime="20161031 16:38:52.819" status="PASS"></status>
+</kw>
+<kw library="OperatingSystem" name="Run And Return Rc And Output">
+<doc>Runs the given command in the system and returns the RC and output.</doc>
+<arguments>
+<arg>cat ${vscan_diff_result1}</arg>
+</arguments>
+<assign>
+<var>${rc}</var>
+<var>${result}</var>
+</assign>
+<msg timestamp="20161031 16:38:52.822" level="INFO">Running command 'cat vscan_diff1 2&gt;&amp;1'.</msg>
+<msg timestamp="20161031 16:38:52.825" level="INFO">${rc} = 0</msg>
+<msg timestamp="20161031 16:38:52.825" level="INFO">${result} = </msg>
+<status starttime="20161031 16:38:52.819" endtime="20161031 16:38:52.825" status="PASS"></status>
+</kw>
+<kw library="BuiltIn" name="Should Be Empty">
+<doc>Verifies that the given item is empty.</doc>
+<arguments>
+<arg>${result}</arg>
+</arguments>
+<msg timestamp="20161031 16:38:52.826" level="INFO">Length is 0</msg>
+<status starttime="20161031 16:38:52.825" endtime="20161031 16:38:52.826" status="PASS"></status>
+</kw>
+<status starttime="20161031 16:38:52.817" endtime="20161031 16:38:52.827" status="PASS"></status>
+</kw>
+<kw name="Check dihedral-POSCAR2">
+<kw library="diff" name="Diff Context">
+<arguments>
+<arg>${02}</arg>
+<arg>${02_dihedral}</arg>
+<arg>${vscan_diff_result2}</arg>
+</arguments>
+<status starttime="20161031 16:38:52.828" endtime="20161031 16:38:52.829" status="PASS"></status>
+</kw>
+<kw library="OperatingSystem" name="Run And Return Rc And Output">
+<doc>Runs the given command in the system and returns the RC and output.</doc>
+<arguments>
+<arg>cat ${vscan_diff_result2}</arg>
+</arguments>
+<assign>
+<var>${rc}</var>
+<var>${result}</var>
+</assign>
+<msg timestamp="20161031 16:38:52.832" level="INFO">Running command 'cat vscan_diff2 2&gt;&amp;1'.</msg>
+<msg timestamp="20161031 16:38:52.835" level="INFO">${rc} = 0</msg>
+<msg timestamp="20161031 16:38:52.835" level="INFO">${result} = *** 
+--- 
+***************
+*** 12,14 ****
+   +4.9199509560  +0.0000000000  +1.6999499870  F F F
+!  +7.3800001140  +0.0000000000  +1.6999499870  F F F
+   +9.8400497130  +0.0000000000  +1.6999499870  F F...</msg>
+<status starttime="20161031 16:38:52.830" endtime="20161031 16:38:52.835" status="PASS"></status>
+</kw>
+<kw library="BuiltIn" name="Should Be Empty">
+<doc>Verifies that the given item is empty.</doc>
+<arguments>
+<arg>${result}</arg>
+</arguments>
+<msg timestamp="20161031 16:38:52.836" level="INFO">Length is 379</msg>
+<msg timestamp="20161031 16:38:52.837" level="FAIL">'*** 
+--- 
+***************
+*** 12,14 ****
+   +4.9199509560  +0.0000000000  +1.6999499870  F F F
+!  +7.3800001140  +0.0000000000  +1.6999499870  F F F
+   +9.8400497130  +0.0000000000  +1.6999499870  F F F
+--- 12,14 ----
+   +4.9199509560  +0.0000000000  +1.6999499870  F F F
+!  +7.3800001140  +0.0000000000  +1.6999499850  F F F
+   +9.8400497130  +0.0000000000  +1.6999499870  F F F' should be empty.</msg>
+<status starttime="20161031 16:38:52.836" endtime="20161031 16:38:52.837" status="FAIL"></status>
+</kw>
+<status starttime="20161031 16:38:52.827" endtime="20161031 16:38:52.838" status="FAIL"></status>
+</kw>
+<kw type="teardown" library="BuiltIn" name="Run Keywords">
+<doc>Executes all the given keywords in a sequence.</doc>
+<arguments>
+<arg>Remove Files</arg>
+<arg>${vscan_diff_result0}</arg>
+<arg>${vscan_diff_result1}</arg>
+<arg>${vscan_diff_result2}</arg>
+<arg>${vscan_diff_result3}</arg>
+<arg>${vscan_diff_result4}</arg>
+<arg>AND</arg>
+<arg>Remove Directory</arg>
+<arg>${00_files}</arg>
+<arg>recursive=yes</arg>
+<arg>AND</arg>
+<arg>Remove Directory</arg>
+<arg>${01_files}</arg>
+<arg>recursive=yes</arg>
+<arg>AND</arg>
+<arg>Remove Directory</arg>
+<arg>${02_files}</arg>
+<arg>recursive=yes</arg>
+<arg>AND</arg>
+<arg>Remove Directory</arg>
+<arg>${03_files}</arg>
+<arg>recursive=ye</arg>
+<arg>AND</arg>
+<arg>Remove Directory</arg>
+<arg>${04_files}</arg>
+<arg>recursive=yess</arg>
+</arguments>
+<kw library="OperatingSystem" name="Remove Files">
+<doc>Uses `Remove File` to remove multiple files one-by-one.</doc>
+<arguments>
+<arg>${vscan_diff_result0}</arg>
+<arg>${vscan_diff_result1}</arg>
+<arg>${vscan_diff_result2}</arg>
+<arg>${vscan_diff_result3}</arg>
+<arg>${vscan_diff_result4}</arg>
+</arguments>
+<msg timestamp="20161031 16:38:52.840" html="yes" level="INFO">Removed file '&lt;a href="file:///root/venv/barry_vtool3/robot/vscan/vscan_diff0"&gt;/root/venv/barry_vtool3/robot/vscan/vscan_diff0&lt;/a&gt;'.</msg>
+<msg timestamp="20161031 16:38:52.841" html="yes" level="INFO">Removed file '&lt;a href="file:///root/venv/barry_vtool3/robot/vscan/vscan_diff1"&gt;/root/venv/barry_vtool3/robot/vscan/vscan_diff1&lt;/a&gt;'.</msg>
+<msg timestamp="20161031 16:38:52.841" html="yes" level="INFO">Removed file '&lt;a href="file:///root/venv/barry_vtool3/robot/vscan/vscan_diff2"&gt;/root/venv/barry_vtool3/robot/vscan/vscan_diff2&lt;/a&gt;'.</msg>
+<msg timestamp="20161031 16:38:52.841" html="yes" level="INFO">File '&lt;a href="file:///root/venv/barry_vtool3/robot/vscan/vscan_diff3"&gt;/root/venv/barry_vtool3/robot/vscan/vscan_diff3&lt;/a&gt;' does not exist.</msg>
+<msg timestamp="20161031 16:38:52.842" html="yes" level="INFO">File '&lt;a href="file:///root/venv/barry_vtool3/robot/vscan/vscan_diff4"&gt;/root/venv/barry_vtool3/robot/vscan/vscan_diff4&lt;/a&gt;' does not exist.</msg>
+<status starttime="20161031 16:38:52.839" endtime="20161031 16:38:52.842" status="PASS"></status>
+</kw>
+<kw library="OperatingSystem" name="Remove Directory">
+<doc>Removes the directory pointed to by the given ``path``.</doc>
+<arguments>
+<arg>${00_files}</arg>
+<arg>recursive=yes</arg>
+</arguments>
+<msg timestamp="20161031 16:38:52.843" html="yes" level="INFO">Removed directory '&lt;a href="file:///root/venv/barry_vtool3/robot/vscan/00"&gt;/root/venv/barry_vtool3/robot/vscan/00&lt;/a&gt;'.</msg>
+<status starttime="20161031 16:38:52.842" endtime="20161031 16:38:52.843" status="PASS"></status>
+</kw>
+<kw library="OperatingSystem" name="Remove Directory">
+<doc>Removes the directory pointed to by the given ``path``.</doc>
+<arguments>
+<arg>${01_files}</arg>
+<arg>recursive=yes</arg>
+</arguments>
+<msg timestamp="20161031 16:38:52.844" html="yes" level="INFO">Removed directory '&lt;a href="file:///root/venv/barry_vtool3/robot/vscan/01"&gt;/root/venv/barry_vtool3/robot/vscan/01&lt;/a&gt;'.</msg>
+<status starttime="20161031 16:38:52.843" endtime="20161031 16:38:52.845" status="PASS"></status>
+</kw>
+<kw library="OperatingSystem" name="Remove Directory">
+<doc>Removes the directory pointed to by the given ``path``.</doc>
+<arguments>
+<arg>${02_files}</arg>
+<arg>recursive=yes</arg>
+</arguments>
+<msg timestamp="20161031 16:38:52.846" html="yes" level="INFO">Removed directory '&lt;a href="file:///root/venv/barry_vtool3/robot/vscan/02"&gt;/root/venv/barry_vtool3/robot/vscan/02&lt;/a&gt;'.</msg>
+<status starttime="20161031 16:38:52.845" endtime="20161031 16:38:52.846" status="PASS"></status>
+</kw>
+<kw library="OperatingSystem" name="Remove Directory">
+<doc>Removes the directory pointed to by the given ``path``.</doc>
+<arguments>
+<arg>${03_files}</arg>
+<arg>recursive=ye</arg>
+</arguments>
+<msg timestamp="20161031 16:38:52.847" html="yes" level="INFO">Removed directory '&lt;a href="file:///root/venv/barry_vtool3/robot/vscan/03"&gt;/root/venv/barry_vtool3/robot/vscan/03&lt;/a&gt;'.</msg>
+<status starttime="20161031 16:38:52.846" endtime="20161031 16:38:52.847" status="PASS"></status>
+</kw>
+<kw library="OperatingSystem" name="Remove Directory">
+<doc>Removes the directory pointed to by the given ``path``.</doc>
+<arguments>
+<arg>${04_files}</arg>
+<arg>recursive=yess</arg>
+</arguments>
+<msg timestamp="20161031 16:38:52.848" html="yes" level="INFO">Removed directory '&lt;a href="file:///root/venv/barry_vtool3/robot/vscan/04"&gt;/root/venv/barry_vtool3/robot/vscan/04&lt;/a&gt;'.</msg>
+<status starttime="20161031 16:38:52.848" endtime="20161031 16:38:52.849" status="PASS"></status>
+</kw>
+<status starttime="20161031 16:38:52.838" endtime="20161031 16:38:52.849" status="PASS"></status>
+</kw>
+<status critical="yes" starttime="20161031 16:38:52.655" endtime="20161031 16:38:52.849" status="FAIL">'*** 
+--- 
+***************
+*** 12,14 ****
+   +4.9199509560  +0.0000000000  +1.6999499870  F F F
+!  +7.3800001140  +0.0000000000  +1.6999499870  F F F
+   +9.8400497130  +0.0000000000  +1.6999499870  F F F
+--- 12,14 ----
+   +4.9199509560  +0.0000000000  +1.6999499870  F F F
+!  +7.3800001140  +0.0000000000  +1.6999499850  F F F
+   +9.8400497130  +0.0000000000  +1.6999499870  F F F' should be empty.</status>
+</test>
+<status starttime="20161031 16:38:52.116" endtime="20161031 16:38:52.850" status="FAIL"></status>
+</suite>
+<statistics>
+<total>
+<stat fail="1" pass="2">Critical Tests</stat>
+<stat fail="1" pass="2">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat id="s1" fail="1" name="Vscan Test" pass="2">Vscan Test</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

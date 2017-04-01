@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generated="20161026 13:37:45.259" generator="Robot 3.0 (Python 3.5.2 on linux)">
+<suite id="s1" source="/root/venv/barry_vtool3/robot/vfreq/vfreq_test.robot" name="Vfreq Test">
+<kw type="setup" library="OperatingSystem" name="Directory Should Exist">
+<doc>Fails unless the given path points to an existing directory.</doc>
+<arguments>
+<arg>../../temple</arg>
+</arguments>
+<msg html="yes" level="INFO" timestamp="20161026 13:37:45.348">Directory '&lt;a href="file:///root/venv/barry_vtool3/temple"&gt;/root/venv/barry_vtool3/temple&lt;/a&gt;' exists.</msg>
+<status status="PASS" endtime="20161026 13:37:45.348" starttime="20161026 13:37:45.347"></status>
+</kw>
+<test id="s1-t1" name="Convert OUTCAR To g09log">
+<kw type="setup" library="OperatingSystem" name="File Should Exist">
+<doc>Fails unless the given ``path`` points to an existing file.</doc>
+<arguments>
+<arg>${g09log_temple}</arg>
+</arguments>
+<msg html="yes" level="INFO" timestamp="20161026 13:37:45.350">File '&lt;a href="file:///root/venv/barry_vtool3/temple/vfreq_test_temple/H2Ofreq_temple"&gt;/root/venv/barry_vtool3/temple/vfreq_test_temple/H2Ofreq_temple&lt;/a&gt;' exists.</msg>
+<status status="PASS" endtime="20161026 13:37:45.350" starttime="20161026 13:37:45.349"></status>
+</kw>
+<kw name="Generate g09freq From OUTCAR">
+<kw library="vfreq_keyword" name="Run vfreq">
+<arguments>
+<arg>${outcar}</arg>
+<arg>${g09log}</arg>
+</arguments>
+<kw library="BuiltIn" name="Set Variable If">
+<doc>Sets variable based on the given condition.</doc>
+<arguments>
+<arg>"${output}" == "${None}"</arg>
+<arg>vfreq -i ${input}</arg>
+<arg>vfreq -i ${input} -o ${output}</arg>
+</arguments>
+<assign>
+<var>${cmd}</var>
+</assign>
+<msg level="INFO" timestamp="20161026 13:37:45.361">${cmd} = vfreq -i ../../temple/vfreq_test_temple/OUTCAR -o ../../temple/vfreq_test_temple/H2Ofreq</msg>
+<status status="PASS" endtime="20161026 13:37:45.362" starttime="20161026 13:37:45.352"></status>
+</kw>
+<kw library="OperatingSystem" name="Run And Return Rc And Output">
+<doc>Runs the given command in the system and returns the RC and output.</doc>
+<arguments>
+<arg>${cmd}</arg>
+</arguments>
+<assign>
+<var>${rc}</var>
+<var>${result}</var>
+</assign>
+<msg level="INFO" timestamp="20161026 13:37:45.367">Running command 'vfreq -i ../../temple/vfreq_test_temple/OUTCAR -o ../../temple/vfreq_test_temple/H2Ofreq 2&gt;&amp;1'.</msg>
+<msg level="INFO" timestamp="20161026 13:37:46.452">${rc} = 0</msg>
+<msg level="INFO" timestamp="20161026 13:37:46.452">${result} = </msg>
+<status status="PASS" endtime="20161026 13:37:46.452" starttime="20161026 13:37:45.362"></status>
+</kw>
+<kw library="BuiltIn" name="Should Be Equal">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${0}</arg>
+<arg>${rc}</arg>
+</arguments>
+<status status="PASS" endtime="20161026 13:37:46.454" starttime="20161026 13:37:46.453"></status>
+</kw>
+<status status="PASS" endtime="20161026 13:37:46.454" starttime="20161026 13:37:45.351"></status>
+</kw>
+<status status="PASS" endtime="20161026 13:37:46.454" starttime="20161026 13:37:45.351"></status>
+</kw>
+<kw name="Check g09freq">
+<kw library="diff" name="Diff Context">
+<arguments>
+<arg>${g09log}</arg>
+<arg>${g09log_temple}</arg>
+<arg>${g09log_diff_result}</arg>
+</arguments>
+<status status="PASS" endtime="20161026 13:37:46.463" starttime="20161026 13:37:46.455"></status>
+</kw>
+<kw library="OperatingSystem" name="Run And Return Rc And Output">
+<doc>Runs the given command in the system and returns the RC and output.</doc>
+<arguments>
+<arg>cat ${g09log_diff_result}</arg>
+</arguments>
+<assign>
+<var>${rc}</var>
+<var>${result}</var>
+</assign>
+<msg level="INFO" timestamp="20161026 13:37:46.466">Running command 'cat vfreq_diff 2&gt;&amp;1'.</msg>
+<msg level="INFO" timestamp="20161026 13:37:46.469">${rc} = 0</msg>
+<msg level="INFO" timestamp="20161026 13:37:46.469">${result} = *** 
+--- 
+***************
+*** 758,759 ****
+   Step number   1 out of a maximum of   2
+!  GradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGrad--- 758,759 ----
+   Step number   1 out...</msg>
+<status status="PASS" endtime="20161026 13:37:46.469" starttime="20161026 13:37:46.463"></status>
+</kw>
+<kw library="BuiltIn" name="Should Be Empty">
+<doc>Verifies that the given item is empty.</doc>
+<arguments>
+<arg>${result}</arg>
+</arguments>
+<msg level="INFO" timestamp="20161026 13:37:46.470">Length is 296</msg>
+<msg level="FAIL" timestamp="20161026 13:37:46.470">'*** 
+--- 
+***************
+*** 758,759 ****
+   Step number   1 out of a maximum of   2
+!  GradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGrad--- 758,759 ----
+   Step number   1 out of a maximum of   2
+!  GradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGrad' should be empty.</msg>
+<status status="FAIL" endtime="20161026 13:37:46.471" starttime="20161026 13:37:46.469"></status>
+</kw>
+<status status="FAIL" endtime="20161026 13:37:46.471" starttime="20161026 13:37:46.455"></status>
+</kw>
+<kw type="teardown" library="OperatingSystem" name="Remove Files">
+<doc>Uses `Remove File` to remove multiple files one-by-one.</doc>
+<arguments>
+<arg>${g09log_diff_result}</arg>
+<arg>${g09log}</arg>
+</arguments>
+<msg html="yes" level="INFO" timestamp="20161026 13:37:46.473">Removed file '&lt;a href="file:///root/venv/barry_vtool3/robot/vfreq/vfreq_diff"&gt;/root/venv/barry_vtool3/robot/vfreq/vfreq_diff&lt;/a&gt;'.</msg>
+<msg html="yes" level="INFO" timestamp="20161026 13:37:46.473">Removed file '&lt;a href="file:///root/venv/barry_vtool3/temple/vfreq_test_temple/H2Ofreq"&gt;/root/venv/barry_vtool3/temple/vfreq_test_temple/H2Ofreq&lt;/a&gt;'.</msg>
+<status status="PASS" endtime="20161026 13:37:46.473" starttime="20161026 13:37:46.472"></status>
+</kw>
+<status status="FAIL" endtime="20161026 13:37:46.473" starttime="20161026 13:37:45.349" critical="yes">'*** 
+--- 
+***************
+*** 758,759 ****
+   Step number   1 out of a maximum of   2
+!  GradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGrad--- 758,759 ----
+   Step number   1 out of a maximum of   2
+!  GradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGrad' should be empty.</status>
+</test>
+<status status="FAIL" endtime="20161026 13:37:46.475" starttime="20161026 13:37:45.261"></status>
+</suite>
+<statistics>
+<total>
+<stat fail="1" pass="0">Critical Tests</stat>
+<stat fail="1" pass="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat id="s1" fail="1" name="Vfreq Test" pass="0">Vfreq Test</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
